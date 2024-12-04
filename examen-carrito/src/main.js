@@ -3,6 +3,7 @@
 
 import Carrito from "./components/Carrito";
 const carrito = new Carrito()
+carrito.cargarLocalStorage();
 
 
 //Crear un h1 con CREATE ELEMENT
@@ -29,10 +30,14 @@ const renderListaCarrito = () =>{
 
     //Poner total
     totalCarrito.textContent = carrito.calcularTotal();
-    lista.querySelector(".btn-borrar").addEventListener("click",()=>alert("has pulsado"));
+    // lista.querySelector(".btn-borrar").addEventListener("click",()=>alert("has pulsado"));
+
+    carrito.guardarLocalStorage()
 }
 
 const agregarProductoHandler = (event) => {
+    
+    // Evitar que se recarge la pagina
     event.preventDefault();
     const nombre = document.getElementById('nombre-producto').value.trim();
     const cantidad = Number(document.getElementById('cantidad-producto').value);
@@ -50,7 +55,26 @@ const agregarProductoHandler = (event) => {
     event.target.reset();
 }
 
-function renderCarrito() {
+const manejarAccionesHandler = (event) => {
+    const index = Number(event.target.dataset.id)
+    if(event.target.classList.contains("btn-borrar")){
+        carrito.borrarProducto(index);
+        renderListaCarrito()
+    }
+
+    if(event.target.classList.contains("btn-editar")){
+        // Editar producto
+        const newCantidad = prompt("Introduce la nueva cantidad: " + carrito.productos[index].cantidad);
+
+        if(newCantidad && Number(newCantidad>0)){
+        //Modifico el carrito
+        carrito.editarProducto(index, Number(newCantidad));
+        renderListaCarrito() 
+        }
+    }
+}
+
+function init() {
 const app = document.getElementById('app');
 const h1 = document.createElement('h1');
 h1.textContent = 'Mi Carrito';
@@ -71,8 +95,20 @@ app.innerHTML += `
 `;
 
 // capturamos eventos
-    app.addEventListener("submit", agregarProductoHandler)
+    document
+        .getElementById("form-producto")
+        .addEventListener("submit", agregarProductoHandler)
+
+
+    document
+        .getElementById("lista-productos")
+        .addEventListener("click", (manejarAccionesHandler))
+    renderListaCarrito()
 }
 
+init();
 
-renderCarrito();
+
+
+
+//Mirar como hacer que cuando edites se autocomplete los valores del form con los del carrito y se cambie el value del boton por actualizar carrito
