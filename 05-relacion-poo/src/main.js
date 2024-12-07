@@ -3,6 +3,7 @@
 
 import { Tarea, TareaClass } from "./helpers/Ejercicio1.js"
 import { ProductoClass, Producto, ProductoDigital, ProductoDigitalClass, ProductoFisico, ProductoFisicoClass } from "./helpers/Ejercicio2.js"
+import { Usuario } from "./helpers/Ejercicio7.js"
 
 
 // const tarea1 = new Tarea("Aprender javaScrpt");
@@ -50,4 +51,3 @@ import { ProductoClass, Producto, ProductoDigital, ProductoDigitalClass, Product
 // const cancion = new ProductoDigitalClass("Canción MP3", 10);
 // cancion.actualizarStock(5);
 // cancion.info();
-
