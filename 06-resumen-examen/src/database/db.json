@@ -1,0 +1,25 @@
+{
+    "products": [
+        {
+        "id": 1,
+        "name": "Camisa blanca",
+        "price": 100,
+        "description": "Camisa blanca de algodon",
+        "category": "ropa"
+        },
+        {
+        "id": 2,
+        "name": "Pantalón chino",
+        "price": 19.99,
+        "description": "Pantalón chino de lana",
+        "category": "ropa"
+        },
+        {
+        "id": 3,
+        "name": "Juego de mesa",
+        "price": 50,
+        "description": "Juego de mesa para 2 personas",
+        "category": "juguetes"
+        }
+    ]
+}
